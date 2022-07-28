@@ -1,0 +1,20 @@
+# 应用名称
+spring:
+  application:
+    name: provider
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+    publisher-confirm-type: correlated
+    publisher-returns: true
+      # 开启手动确认：在收到消息处理完业务后再调用 channel.basicAck() 确认消。否则将再收到消息后自动确认，业务可能会处理失败造成数据丢失
+    listener:
+      simple:
+        acknowledge-mode: manual
+server:
+  port: 8111
+
